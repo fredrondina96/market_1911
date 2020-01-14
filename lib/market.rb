@@ -12,4 +12,8 @@ attr_reader :name, :vendors
   def add_vendor(vendor)
     @vendors << vendor
   end
+
+  def vendor_names
+    @vendors.map {|vendor| vendor.name}
+  end
 end
