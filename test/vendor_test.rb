@@ -24,4 +24,9 @@ class VendorTest < Minitest::Test
   def test_vendor_can_check_stock_of_items
     assert_equal 0, @vendor.check_stock(@item1)
   end
+
+  def test_vendor_can_restock_items
+    @vendor.stock(@item1, 30)
+     assert_equal 30, @vendor.inventory[@item1]
+  end
 end
