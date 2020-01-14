@@ -26,4 +26,14 @@ attr_reader :name, :vendors
         end
     return vendors_that_stock
   end
+
+  def sorted_item_list
+    items_sold = []
+      @vendors.each do |vendor|
+        vendor.inventory.keys.each do |item|
+          items_sold << item.name if (items_sold.include?(item.name) == false)
+        end
+      end
+    return items_sold.sort { |a, b| a <=> b }
+  end
 end
