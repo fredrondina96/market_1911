@@ -36,4 +36,14 @@ attr_reader :name, :vendors
       end
     return items_sold.sort { |a, b| a <=> b }
   end
+
+  def total_inventory
+    inventory_count = Hash.new(0)
+      @vendors.each do |vendor|
+        vendor.inventory.each do |item, amount|
+          inventory_count[item] += amount
+        end
+      end
+    return inventory_count
+  end
 end
