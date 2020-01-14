@@ -78,4 +78,19 @@ class MarketTest < Minitest::Test
     assert_includes @market.total_inventory.keys, @item3
     assert_includes @market.total_inventory.keys, @item4
   end
+
+  def test_market_can_sell_items
+    @market.add_vendor(@vendor1)
+    @market.add_vendor(@vendor2)
+    @market.add_vendor(@vendor3)
+    refute @market.sell(@item1, 200)
+    refute_nil @market.sell(@item1, 200)
+    refute @market.sell(@item5, 1)
+    refute_nil @market.sell(@item5, 1)
+    assert @market.sell(@item1, 5)
+    assert_equal 30, @vendor1.check_stock(@item1)
+    assert @market.sell(@item1, 40)
+    assert_equal 0, @vendor1.check_stock(@item1)
+    assert_equal 55, @vendor3.check_stock(@item1)
+  end
 end

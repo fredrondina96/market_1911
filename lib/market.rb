@@ -46,4 +46,18 @@ attr_reader :name, :vendors
       end
     return inventory_count
   end
+
+  def sell(item, amount)
+    remaining_amount = amount
+    return false if (total_inventory[item] < amount)
+      vendors_that_sell(item).each do |vendor|
+          until ((remaining_amount == 0) || (vendor.inventory[item] == 0))
+            # binding.pry
+            vendor.inventory[item] -= 1
+            remaining_amount -= 1
+          end
+        next
+      end
+    return true
+  end
 end
