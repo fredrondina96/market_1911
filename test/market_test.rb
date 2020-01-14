@@ -14,4 +14,8 @@ class MarketTest < Minitest::Test
   def test_market_exists
     assert_instance_of Market, @market
   end
+
+  def test_market_has_attributes
+    assert_equal "South Pearl Street Farmers Market", @market.name
+  end
 end
