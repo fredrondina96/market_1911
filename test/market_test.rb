@@ -57,5 +57,6 @@ class MarketTest < Minitest::Test
     @market.add_vendor(@vendor3)
     assert_includes @market.vendors_that_sell(@item1), @vendor1
     assert_includes @market.vendors_that_sell(@item1), @vendor3
+    refute_includes @market.vendors_that_sell(@item1), @vendor2 
   end
 end
